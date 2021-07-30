@@ -1,0 +1,28 @@
+<template>
+  <Nuxt />
+</template>
+
+<script>
+  export default {
+    layout: 'default'
+  }
+</script>
+
+<style lang="scss">
+  html {
+    height: 100%;
+
+    body {
+      margin: 0;
+      height: 100%;
+
+      #__nuxt {
+        height: 100%;
+
+        #__layout {
+          height: 100%;
+        }
+      }
+    }
+  }
+</style>
