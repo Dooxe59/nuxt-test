@@ -5,15 +5,21 @@
         The goal of this test is to display 10 random images by using the Flickity component and Picsum APIs
       </span>
     </div>
-    <carousel v-if="images && images[0]" class="carousel">
-        <img 
-          v-for="image in images"
-          class="carousel-cell"
-          :key="image.id"
-          :src="image.download_url"
-          :alt="`Image created by ${image.author}`" />
-      </carousel>
+    <carousel v-if="isRequestStatusSuccess" class="carousel">
+      <img 
+        v-for="image in images"
+        class="carousel-cell"
+        :key="image.id"
+        :src="image.download_url"
+        :alt="`Image created by ${image.author}`" />
+    </carousel>
+    <div v-else-if="isRequestStatusLoading" class="loading-images-progress">
+      Loading in progress ...
     </div>
+    <div v-else-if="isRequestStatusError && requestStatusError" class="loading-images-error">
+      An error has occurred: {{ requestStatusError }}
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -30,7 +36,9 @@ import carousel from '~/components/shared/carousel.vue';
 
 
 export default {
-  components: { carousel },
+  components: { 
+    carousel
+  },
   data() {
     return {
       requestStatus: RequestStatus.DEFAULT as RequestStatus, 
@@ -42,7 +50,19 @@ export default {
     loadImageUrl(): string {
       const randomNumber = generateRandomNumber(1,100);
       return `https://picsum.photos/v2/list?page=${randomNumber}&limit=10`;
-    }
+    },
+    isRequestStatusLoading(): boolean {
+      return this.requestStatus === RequestStatus.LOADING;
+    },
+    isRequestStatusSuccess(): boolean {
+      return this.requestStatus === RequestStatus.SUCCESS;
+    },
+    isRequestStatusError(): boolean {
+      return this.requestStatus === RequestStatus.ERROR;
+    },
+    requestStatusError(): string {
+      return this.requestError?.message;
+    },
   },
   methods: {
     loadImages(): void {
@@ -86,8 +106,13 @@ export default {
       margin-top: 30px;
       height: 150px;
 
+      @media screen and (min-width: $breakpoint-tablet-max) and (max-width: $breakpoint-desktop-min) {
+        height: 225px;
+      }
+
       @media screen and (min-width: $breakpoint-desktop-min) {
         height: 300px;
+        width: 80%;
       }
 
       .carousel-cell {
@@ -96,10 +121,20 @@ export default {
         border-radius: $radius;
         height: 150px;
 
+        @media screen and (min-width: $breakpoint-tablet-max) and (max-width: $breakpoint-desktop-min) {
+        height: 225px;
+      }
+
         @media screen and (min-width: $breakpoint-desktop-min) {
           height: 300px;
         }
       }
+    }
+
+    .loading-images-progress, .loading-images-error {
+      display: flex;
+      flex: 1;
+      align-items: center;
     }
   }
   
