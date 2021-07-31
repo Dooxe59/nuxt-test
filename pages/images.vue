@@ -3,15 +3,15 @@
     <span class="test-description">
       The goal of this test is to display 10 random images by using the Flickity component and Picsum APIs
     </span>
-    {{ images }}
-    <carousel>
-      <div class="carousel-cell">A</div>
-      <div class="carousel-cell">B</div>
-      <div class="carousel-cell">C</div>
-      <div class="carousel-cell">D</div>
-      <div class="carousel-cell">E</div>
-    </carousel>
-  </div> 
+    <carousel v-if="images && images[0]" class="carousel">
+        <img 
+          v-for="image in images"
+          class="carousel-cell"
+          :key="image.id"
+          :src="image.download_url"
+          :alt="`Image created by ${image.author}`" />
+      </carousel>
+    </div>
 </template>
 
 <script lang="ts">
@@ -58,24 +58,33 @@ export default {
     }
   },
   mounted() {
-    this.loadImages(); 
     const Flickity = require('flickity');
+    this.loadImages(); 
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import 'flickity/dist/flickity.min.css';
+@import "styles/variables.scss";
 
   .images-container {
-   
-  }
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  .carousel-cell {
-    width: 66%;
-    height: 200px;
-    margin-right: 10px;
-    background: #8C8;
-    border-radius: 5px;
+    .carousel {
+      width: 50%;
+      margin-top: 30px;
+      
+      .carousel-cell {
+        width: 50%;
+        height: 300px;
+        margin-right: $spacing;
+        border-radius: $radius;
+      }
+    }
   }
+  
 </style>

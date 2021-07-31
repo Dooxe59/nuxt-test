@@ -22,7 +22,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@import "./styles/variables.scss";
+@import "styles/variables.scss";
 
   .link {
     border: 1px solid $color-green;
