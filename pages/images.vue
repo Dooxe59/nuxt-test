@@ -84,12 +84,21 @@ export default {
     .carousel {
       width: 100%;
       margin-top: 30px;
-      
+      height: 150px;
+
+      @media screen and (min-width: $breakpoint-desktop-min) {
+        height: 300px;
+      }
+
       .carousel-cell {
         width: 50%;
-        height: 300px;
         margin-right: $spacing;
         border-radius: $radius;
+        height: 150px;
+
+        @media screen and (min-width: $breakpoint-desktop-min) {
+          height: 300px;
+        }
       }
     }
   }
