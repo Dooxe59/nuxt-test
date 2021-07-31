@@ -3,9 +3,14 @@
     <span class="test-description">
       The goal of this test is to display 10 random images by using the Flickity component and Picsum APIs
     </span>
-    <div>
-      {{ images }}
-    </div>
+    {{ images }}
+    <carousel>
+      <div class="carousel-cell">A</div>
+      <div class="carousel-cell">B</div>
+      <div class="carousel-cell">C</div>
+      <div class="carousel-cell">D</div>
+      <div class="carousel-cell">E</div>
+    </carousel>
   </div> 
 </template>
 
@@ -19,8 +24,11 @@ import { ResponseData } from 'models/ResponseData';
 import { RequestStatus } from '~/enums/RequestStatus.enum';
 
 import { generateRandomNumber } from '~/utils/generateRandomNumber';
+import carousel from '~/components/shared/carousel.vue';
+
 
 export default {
+  components: { carousel },
   data() {
     return {
       requestStatus: RequestStatus.DEFAULT as RequestStatus, 
@@ -51,12 +59,23 @@ export default {
   },
   mounted() {
     this.loadImages(); 
+    const Flickity = require('flickity');
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import 'flickity/dist/flickity.min.css';
+
   .images-container {
    
+  }
+
+  .carousel-cell {
+    width: 66%;
+    height: 200px;
+    margin-right: 10px;
+    background: #8C8;
+    border-radius: 5px;
   }
 </style>
