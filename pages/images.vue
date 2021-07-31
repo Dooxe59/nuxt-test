@@ -1,8 +1,10 @@
 <template>
   <div class="images-container">
-    <span class="test-description">
-      The goal of this test is to display 10 random images by using the Flickity component and Picsum APIs
-    </span>
+    <div class="exercice-description">
+      <span class="test-description">
+        The goal of this test is to display 10 random images by using the Flickity component and Picsum APIs
+      </span>
+    </div>
     <carousel v-if="images && images[0]" class="carousel">
         <img 
           v-for="image in images"
@@ -74,8 +76,13 @@ export default {
     flex-direction: column;
     align-items: center;
 
+    .exercice-description {
+      width: 100%;
+      margin: 0 $spacing-sm;
+    }
+
     .carousel {
-      width: 50%;
+      width: 100%;
       margin-top: 30px;
       
       .carousel-cell {
