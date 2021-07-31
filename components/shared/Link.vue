@@ -7,7 +7,6 @@
 <script lang="ts">
 
 export default {
-  name: 'Link',
   props: {
     to: {
       type: String,
