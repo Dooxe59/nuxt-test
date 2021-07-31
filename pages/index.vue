@@ -6,10 +6,9 @@
 </template>
 
 <script lang="ts">
-import Link from "@/components/shared/link.vue";
+import Link from "../components/shared/link.vue";
 
 export default {
-  name: 'Index',
   components: {
     Link,
   }
