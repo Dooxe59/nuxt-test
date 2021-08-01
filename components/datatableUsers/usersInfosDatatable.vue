@@ -13,17 +13,26 @@
         hide-overlay
         v-model="showAdvancedUserInfos">
         <V-card>
-          <V-card-title class="advanced-users-infos-modal">
+          <V-card-title class="advanced-users-infos-title-modal">
             <span class="title">Advanced user informations</span>
             <Button 
               label="Close"
               @click="closeAdvancedUserInfos" />
           </V-card-title>
           <V-card-text>
-            <User-infos :user-id="selectedUserId"/>
-            <User-posts :user-id="selectedUserId"/>
-            <User-todos :user-id="selectedUserId"/>
-            <User-albums :user-id="selectedUserId"/>
+            <V-tabs color="green" v-model="currentTab">
+              <V-tabs-slider color="green"></v-tabs-slider>
+              <V-tab
+                v-for="tab in tabs"
+                :key="tab">
+                {{ tab }}
+              </V-tab>
+            </V-tabs>
+
+            <User-infos v-show="showUserInfos" :user-id="selectedUserId"/>
+            <User-posts v-show="showUserPosts" :user-id="selectedUserId"/>
+            <User-todos v-show="showUserTodos" :user-id="selectedUserId"/>
+            <User-albums v-show="showUserAlbums" :user-id="selectedUserId"/>
           </V-card-text>
         </V-card>
       </V-dialog>
@@ -86,13 +95,29 @@ export default Vue.extend({
           sortable: false,
         },
       ],
+      tabs: [
+        'User advanced informations', 'User posts', 'User todos', 'User albums',
+      ],
+      currentTab: 0,
       showAdvancedUserInfos: false,
       selectedUser: {} as UserDto,
     }
   },
   computed: {
-    selectedUserId() : String {
+    selectedUserId(): string {
       return `${this.selectedUser.id}`;
+    },
+    showUserInfos(): boolean {
+      return this.currentTab === 0;
+    },
+    showUserPosts(): boolean {
+      return this.currentTab === 1;
+    },
+    showUserTodos(): boolean {
+      return this.currentTab === 2;
+    },
+    showUserAlbums(): boolean {
+      return this.currentTab === 3;
     },
   },
   methods: {
@@ -116,7 +141,7 @@ export default Vue.extend({
   .users-infos-datatable {
     margin-top: 30px;
 
-    .advanced-users-infos-modal{
+    .advanced-users-infos-title-modal{
       color: $color-white;
       background-color: $color-green;
       display: flex;
