@@ -29,7 +29,7 @@ import axios from 'axios';
 
 // Global export / import models
 import { ImageDto } from '~/models/images/Image.dto.model';
-import { ResponseData } from 'models/ResponseData';
+import { ResponseData } from '~/models/ResponseData';
 import { RequestStatus } from '~/enums/RequestStatus.enum';
 
 import { generateRandomNumber } from '~/utils/generateRandomNumber';
