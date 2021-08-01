@@ -5,6 +5,7 @@
         The goal of this test is to display 10 random images by using the Flickity component and Picsum APIs
       </span>
     </div>
+    <!-- Use directive to detect when img was loaded and reload cells (v-images-loaded) -->
     <carousel v-if="isRequestStatusSuccess" class="carousel">
       <img 
         v-for="image in images"
@@ -80,14 +81,12 @@ export default {
     }
   },
   mounted() {
-    const Flickity = require('flickity');
     this.loadImages(); 
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import 'flickity/dist/flickity.min.css';
 @import "styles/variables.scss";
 
   .images-container {
