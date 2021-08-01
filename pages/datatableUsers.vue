@@ -7,7 +7,10 @@
       </span>
     </div>
     <div v-if="isRequestStatusSuccess" class="users-infos">
-      {{ users }}
+      <div v-if="users.length === 0" class="no-users">
+        No data available
+      </div>
+      <Users-infos-datatable v-else :users="users"/>
     </div>
     <div v-else-if="isRequestStatusLoading" class="loading-users-progress">
       Loading user informations in progress ...
@@ -15,6 +18,7 @@
     <div v-else-if="isRequestStatusError && requestStatusError" class="loading-users-error">
       An error has occurred: {{ requestStatusError }}
     </div>
+    
   </div> 
 </template>
 
@@ -25,10 +29,14 @@ import { UserDto } from '~/models/users/User.dto.model';
 import { User } from '~/models/users/User.api.model';
 import { ResponseData } from 'models/ResponseData';
 import { RequestStatus } from '~/enums/RequestStatus.enum';
+import UsersInfosDatatable from '~/components/datatableUsers/usersInfosDatatable.vue';
 
 import  Vue from 'vue';
 
 export default Vue.extend({
+  components: { 
+    UsersInfosDatatable 
+  },
   data() {
     return {
       requestStatus: RequestStatus.DEFAULT as RequestStatus, 
