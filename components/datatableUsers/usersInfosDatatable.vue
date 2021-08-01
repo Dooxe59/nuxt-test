@@ -1,12 +1,12 @@
 <template>
   <div class="users-infos-datatable">
     <V-app>
-    <V-data-table
-      class="elevation-1" 
-      hide-default-footer
-      :headers="headers"
-      :items="users" 
-      @click:row="selectDatatableRow"/>
+      <V-data-table
+        class="elevation-1" 
+        hide-default-footer
+        :headers="headers"
+        :items="users" 
+        @click:row="selectDatatableRow"/>
       <V-dialog 
         width="500"
         v-model="showAdvancedUserInfos">
@@ -15,8 +15,10 @@
             Advanced user informations
           </V-card-title>
           <V-card-text>
-            <!-- <Advanced-user-infos :user-id="selectedUserId"/> -->
+            <!-- <User-infos :user-id="selectedUserId"/> -->
             <!-- <User-posts :user-id="selectedUserId"/> -->
+            <!-- <User-todos :user-id="selectedUserId"/> -->
+            <User-albums :user-id="selectedUserId"/>
           </V-card-text>
           <V-divider></V-divider>
           <V-card-actions>
@@ -32,16 +34,20 @@
 <script lang="ts">
 import { UserDto } from '~/models/users/User.dto.model';
 import Button from '~/components/shared/button.vue';
-import AdvancedUserInfos from './advancedUserInfos.vue';
+import UserInfos from './userInfos.vue';
 import UserPosts from './userPosts.vue';
+import UserTodos from './userTodos.vue';
+import UserAlbums from './userAlbums.vue';
 
 import Vue from 'vue';
 
 export default Vue.extend({
   components: {
     Button,
-    AdvancedUserInfos,
+    UserInfos,
     UserPosts,
+    UserTodos,
+    UserAlbums,
   },
   props: {
     users: {
