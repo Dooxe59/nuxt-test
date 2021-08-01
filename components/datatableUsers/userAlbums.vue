@@ -1,7 +1,40 @@
 <template>
   <div class="user-albums">
-    <!-- Manage loading -->
-    {{ userAlbums }}
+    <div v-if="isRequestStatusSuccess" class="user-albums-container">
+      <div v-if="userAlbums.length === 0" class="no-user-albums">
+        No data available
+      </div>
+      <div 
+        v-else
+        v-for="userAlbum in userAlbums"
+        :key="userAlbum.id">
+        <v-card class="user-albums-card" elevation="2">
+          <div class="key-value-container">
+            <span class="key">
+              Id:
+            </span>
+            <span class="value">
+              {{userAlbum.id}}
+            </span>
+          </div>
+          <div class="key-value-container">
+            <span class="key">
+              Title:
+            </span>
+            <span class="value">
+              {{userAlbum.title}}
+            </span>
+          </div>
+        </v-card>
+      </div>   
+    </div>
+    <div v-else-if="isRequestStatusLoading" class="loading-users-albums-progress">
+      Loading user albums in progress ...
+    </div>
+    <div v-else-if="isRequestStatusError && requestStatusError" class="loading-users-albums-error">
+      An error has occurred: {{ requestStatusError }}
+    </div>
+    
   </div> 
 </template>
 
@@ -24,7 +57,7 @@ export default Vue.extend({
     return {
       requestStatus: RequestStatus.DEFAULT as RequestStatus, 
       requestError: {} as Error, 
-      userAlbums: {} as UserAlbum[],
+      userAlbums: [] as UserAlbum[],
     }
   },
   watch: {
@@ -35,6 +68,18 @@ export default Vue.extend({
   computed: {
     loadUserAlbumsUrl(): string {
       return `https://jsonplaceholder.typicode.com/albums?userId=${this.userId}`;
+    },
+    isRequestStatusLoading(): boolean {
+      return this.requestStatus === RequestStatus.LOADING;
+    },
+    isRequestStatusSuccess(): boolean {
+      return this.requestStatus === RequestStatus.SUCCESS;
+    },
+    isRequestStatusError(): boolean {
+      return this.requestStatus === RequestStatus.ERROR;
+    },
+    requestStatusError(): string {
+      return this.requestError?.message;
     },
   },
   methods: {
@@ -61,7 +106,34 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 @import "styles/variables.scss";
-  .user-albums {
+  .user-albums-container {
 
+    @media screen and (min-width: $breakpoint-tablet-max) and (max-width: $breakpoint-desktop-min) {
+      margin: 0 15%;
+    }
+
+    @media screen and (min-width: $breakpoint-desktop-min) {
+      margin: 0 30%;
+    }
+
+    .user-albums-card {
+      margin-bottom: $spacing;
+      padding: $spacing;
+
+      .key-value-container {
+        display: flex;
+
+        .key {
+          line-height: 1.5;
+          color: $color-cutty-sark;
+          margin-right: $spacing-sm;
+        }
+    
+        .value {
+          line-height: 1.5;
+          color: $color-nile-blue;
+        }
+      }
+    }
   }
 </style>

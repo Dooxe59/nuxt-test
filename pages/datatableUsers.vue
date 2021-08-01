@@ -18,7 +18,6 @@
     <div v-else-if="isRequestStatusError && requestStatusError" class="loading-users-error">
       An error has occurred: {{ requestStatusError }}
     </div>
-    
   </div> 
 </template>
 
