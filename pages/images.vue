@@ -5,7 +5,6 @@
         The goal of this test is to display 10 random images by using the Flickity component and Picsum APIs
       </span>
     </div>
-    <!-- Split carousel, loading status and error into 3 components -->
     <carousel v-if="isRequestStatusSuccess" class="carousel">
       <img 
         v-for="image in images"
