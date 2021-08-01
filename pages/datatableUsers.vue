@@ -31,7 +31,7 @@ import { ResponseData } from 'models/ResponseData';
 import { RequestStatus } from '~/enums/RequestStatus.enum';
 import UsersInfosDatatable from '~/components/datatableUsers/usersInfosDatatable.vue';
 
-import  Vue from 'vue';
+import Vue from 'vue';
 
 export default Vue.extend({
   components: { 
@@ -107,7 +107,7 @@ export default Vue.extend({
     }
 
     // Duplicated style, create generic methods and style 
-    .loading-images-progress, .loading-images-error {
+    .loading-users-progress, .loading-users-error {
       display: flex;
       flex: 1;
       align-items: center;
