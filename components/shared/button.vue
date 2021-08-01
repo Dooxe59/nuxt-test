@@ -1,6 +1,6 @@
 <template>
   <V-btn 
-    text 
+    depressed 
     :color="color"
     @click.stop="onClickButton"> 
     {{ label }}
@@ -14,7 +14,6 @@ export default Vue.extend({
   props: {
     color: {
       type: String, 
-      default: 'primary',
     },
     label: {
       type: String, 

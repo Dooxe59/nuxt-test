@@ -9,22 +9,22 @@
         @click:row="selectDatatableRow"/>
       <V-dialog 
         width="500"
+        fullscreen
+        hide-overlay
         v-model="showAdvancedUserInfos">
         <V-card>
-          <V-card-title class="text-h5 grey lighten-2">
-            Advanced user informations
+          <V-card-title class="advanced-users-infos-modal">
+            <span class="title">Advanced user informations</span>
+            <Button 
+              label="Close"
+              @click="closeAdvancedUserInfos" />
           </V-card-title>
           <V-card-text>
-            <!-- <User-infos :user-id="selectedUserId"/> -->
-            <!-- <User-posts :user-id="selectedUserId"/> -->
-            <!-- <User-todos :user-id="selectedUserId"/> -->
+            <User-infos :user-id="selectedUserId"/>
+            <User-posts :user-id="selectedUserId"/>
+            <User-todos :user-id="selectedUserId"/>
             <User-albums :user-id="selectedUserId"/>
           </V-card-text>
-          <V-divider></V-divider>
-          <V-card-actions>
-            <V-spacer></V-spacer>
-            <Button label="Close" @click="closeAdvancedUserInfos" />
-          </V-card-actions>
         </V-card>
       </V-dialog>
     </V-app>
@@ -115,5 +115,16 @@ export default Vue.extend({
 @import "styles/variables.scss";
   .users-infos-datatable {
     margin-top: 30px;
+
+    .advanced-users-infos-modal{
+      color: $color-white;
+      background-color: $color-green;
+      display: flex;
+      align-items: center;
+
+      .title {
+        flex: 1;
+      }
+    }
   }
 </style>
