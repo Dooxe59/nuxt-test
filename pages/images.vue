@@ -15,7 +15,7 @@
         :alt="`Image created by ${image.author}`" />
     </carousel>
     <div v-else-if="isRequestStatusLoading" class="loading-images-progress">
-      Loading in progress ...
+      Loading images informations in progress ...
     </div>
     <div v-else-if="isRequestStatusError && requestStatusError" class="loading-images-error">
       An error has occurred: {{ requestStatusError }}
