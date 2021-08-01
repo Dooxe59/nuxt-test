@@ -36,7 +36,9 @@ import { generateRandomNumber } from '~/utils/generateRandomNumber';
 import carousel from '~/components/shared/carousel.vue';
 
 
-export default {
+import  Vue from 'vue';
+
+export default Vue.extend({
   components: { 
     carousel
   },
@@ -83,7 +85,8 @@ export default {
   mounted() {
     this.loadImages(); 
   }
-}
+});
+
 </script>
 
 <style lang="scss" scoped>

@@ -26,8 +26,9 @@ import { User } from '~/models/users/User.api.model';
 import { ResponseData } from 'models/ResponseData';
 import { RequestStatus } from '~/enums/RequestStatus.enum';
 
+import  Vue from 'vue';
 
-export default {
+export default Vue.extend({
   data() {
     return {
       requestStatus: RequestStatus.DEFAULT as RequestStatus, 
@@ -79,7 +80,8 @@ export default {
   mounted() {
     this.loadUsers(); 
   }
-}
+});
+
 </script>
 
 <style lang="scss" scoped>
