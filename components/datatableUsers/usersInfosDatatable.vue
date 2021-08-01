@@ -2,7 +2,7 @@
   <div class="users-infos-datatable">
     <V-app>
       <V-data-table
-        class="elevation-1" 
+        class="elevation-3" 
         hide-default-footer
         :headers="headers"
         :items="users" 
@@ -14,7 +14,7 @@
         v-model="showAdvancedUserInfos">
         <V-card>
           <V-card-title class="advanced-users-infos-title-modal">
-            <span class="title">Advanced user informations</span>
+            <span class="title">User informations</span>
             <Button 
               label="Close"
               @click="closeAdvancedUserInfos" />
@@ -28,7 +28,6 @@
                 {{ tab }}
               </V-tab>
             </V-tabs>
-
             <User-infos v-show="showUserInfos" :user-id="selectedUserId"/>
             <User-posts v-show="showUserPosts" :user-id="selectedUserId"/>
             <User-todos v-show="showUserTodos" :user-id="selectedUserId"/>
@@ -96,7 +95,7 @@ export default Vue.extend({
         },
       ],
       tabs: [
-        'User advanced informations', 'User posts', 'User todos', 'User albums',
+        'Infos', 'Posts', 'Todos', 'Albums',
       ],
       currentTab: 0,
       showAdvancedUserInfos: false,
