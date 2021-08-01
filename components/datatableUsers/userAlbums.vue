@@ -119,21 +119,6 @@ export default Vue.extend({
     .user-albums-card {
       margin-bottom: $spacing;
       padding: $spacing;
-
-      .key-value-container {
-        display: flex;
-
-        .key {
-          line-height: 1.5;
-          color: $color-cutty-sark;
-          margin-right: $spacing-sm;
-        }
-    
-        .value {
-          line-height: 1.5;
-          color: $color-nile-blue;
-        }
-      }
     }
   }
 </style>
