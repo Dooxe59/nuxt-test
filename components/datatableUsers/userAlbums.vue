@@ -106,13 +106,17 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import "styles/variables.scss";
   .user-albums-container {
+    margin-top: 30px;
+    margin-bottom: $spacing-sm;
 
     @media screen and (min-width: $breakpoint-tablet-max) and (max-width: $breakpoint-desktop-min) {
-      margin: 0 15%;
+      margin-left: 15%;
+      margin-right: 15%;
     }
 
     @media screen and (min-width: $breakpoint-desktop-min) {
-      margin: 0 30%;
+      margin-left: 30%;
+      margin-right: 30%;
     }
 
     .user-albums-card {

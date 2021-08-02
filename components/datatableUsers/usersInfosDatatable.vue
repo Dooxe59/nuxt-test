@@ -42,7 +42,7 @@
 <script lang="ts">
 import { UserDto } from '~/models/users/User.dto.model';
 import Button from '~/components/shared/button.vue';
-import UserInfos from './userInfos.vue';
+import UserInfos from './userInfos/userInfos.vue';
 import UserPosts from './userPosts.vue';
 import UserTodos from './userTodos.vue';
 import UserAlbums from './userAlbums.vue';
