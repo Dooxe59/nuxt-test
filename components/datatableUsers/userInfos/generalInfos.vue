@@ -2,6 +2,9 @@
   <div class="general-user-infos">
     <!-- Must be generic (v-for new object mapped) -->
     <v-card class="user-infos-card" elevation="2">
+      <v-card-title>
+        <span class="text-h6 font-weight-light">General</span>
+      </v-card-title>
       <div class="key-value-container">
         <span class="key">
           Id:

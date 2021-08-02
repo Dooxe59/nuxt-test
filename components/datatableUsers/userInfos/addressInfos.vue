@@ -1,6 +1,9 @@
 <template>
   <div class="address-user-infos">
     <v-card class="user-address-infos-card" elevation="2">
+      <v-card-title>
+        <span class="text-h6 font-weight-light">Address</span>
+      </v-card-title>
       <div class="key-value-container">
         <span class="key">
           Street:
